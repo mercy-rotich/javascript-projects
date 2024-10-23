@@ -29,9 +29,20 @@ function checkGuess (){
         feedback.style.color="orange";
         disableInput();
     }
+
+    if (guesses===5){
+        if(randomNumber%2===0){
+            feedback.textContent +="Hint:the number is even";
+        }
+        else{
+            feedback.textContent +="Hint: the number is odd";
+        }
+    }
     }
     function disableInput(){
         document.getElementById("guessInput").disabled=true;
+
+
     }
 
     
