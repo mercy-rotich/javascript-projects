@@ -1,6 +1,7 @@
 let randomNumber = Math.floor(Math.random()*100) +1;
 let guesses = 0;
 let maxGuesses=10;
+let highScore=localStorage.getItem('highScore')||Infinity;
 
 function checkGuess (){
     const userGuess = Number(document.getElementById("guessInput").value);
@@ -38,6 +39,20 @@ function checkGuess (){
             feedback.textContent +="Hint: the number is odd";
         }
     }
+
+    if (userGuess===randomNumber){
+        if(guesses<highScore){
+            highScore=guesses;
+            localStorage.setItem('highScore',highScore);
+            feedback.textContent += `New High Score:${highScore} guesses!`;
+        }
+    }
+    }
+    function displayHighScore(){
+        const storedHighScore =localStorage.getItem('highScore');
+        if(storedHighScore !==null){
+            document.getElementById("highScore").textContent=`High Score: ${storedHighScore} guesses`;
+        }
     }
     function disableInput(){
         document.getElementById("guessInput").disabled=true;
